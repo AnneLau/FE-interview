@@ -1,10 +1,7 @@
-# HTML基础知识
+#  H5
+##  H5 
 
-
-
-#html
-
-### `<img>`的`title`和`alt`有什么区别
+### `img`的`title`和`alt`有什么区别
 
 1. `title`是[global attributes](http://www.w3.org/TR/html-markup/global-attributes.html#common.attrs.core)之一，用于为元素提供附加的advisory information。通常当鼠标滑动到元素上的时候显示。
 2. `alt`是`<img>`的特有属性，是图片内容的等价描述，用于图片无法加载时显示、读屏器阅读图片。可提图片高可访问性，除了纯装饰图片外都必须设置有意义的值，搜索引擎会重点分析。
@@ -82,11 +79,11 @@ for(循环) {
 
 ​ 假设block1是position: absolute的元素，block2是position: relative的元素。当使用jquery的animate()方法移动元素来展示一些动画效果时：
 
-$("#block1").animate({left:50});
+`$("#block1").animate({left:50});`
 
 ​ block1移动，会影响到它父元素下的所有子元素。因为在移动过程中，所有子元素需要判断block1的z-index是否在自己的上面，如果是在自己的上面，则需要重绘，这里不会引起回流。
 
-$("#block2").animate({marginLeft:50});
+`$("#block2").animate({marginLeft:50});`
 
 ​ block2是相对定位的元素，影响的元素与block1一样，但是因为block2非绝对定位，而且改变的是marginLeft属性，所以这里每次改变不但会重绘，还会引起父元素及其下元素的回流。
 
@@ -94,18 +91,21 @@ $("#block2").animate({marginLeft:50});
 
 ### 替换元素和非替换元素有哪些，它们的差异是什么？
 
-####替换元素
+#### 替换元素
 
 替换元素是浏览器根据其标签的元素与属性来判断显示具体的内容。
 
-比如：<input type="text"/> ，这是一个文本输入框，换一个其他type的时候，浏览器显示就不一样
+比如：`<input type="text"/> `，这是一个文本输入框，换一个其他type的时候，浏览器显示就不一样
 
-(X)HTML中的<img>、<input>、<textarea>、<select>、<object>都是替换元素，这些元素都没有实际的内容。
+(X)HTML中的`<img>、<input>、<textarea>、<select>、<object>`都是替换元素，这些元素都没有实际的内容。
 
-####非替换元素
+#### 非替换元素
 
-(X)HTML 的大多数元素是不可替换元素，他们将内容直接告诉浏览器，将其显示出来。
+`(X)HTML `的大多数元素是不可替换元素，他们将内容直接告诉浏览器，将其显示出来。
 
-比如<p>merrier.wang</p>、<label>Merrier</label>
+比如`<p>merrier.wang</p>、<label>Merrier</label>`
 
 浏览器将把这段内容直接显示出来。
+
+
+
