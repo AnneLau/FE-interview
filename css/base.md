@@ -815,3 +815,85 @@ border-box: 实际width = width;
 所以 contentWidth = 实际设定width - padding - border；
 content-box: 实际width = border+padding+contentWidth（设定的width）;
 ```
+
+### 形成BFC(Block Formatting Context)的几种方式
+
+BFC全称”Block Formatting Context”, 中文为“块级格式化上下文”。BFC元素特性表现原则就是，内部子元素再怎么翻江倒海，翻云覆雨都不会影响外部的元素。
+
+
+怎样形成BFC
+
+- 根元素或其它包含它的元素
+
+- 浮动 (元素的 float 不是 none)
+
+- 绝对定位的元素 (元素具有 position 为 absolute 或 fixed)
+
+- 非块级元素具有 display: inline-block，table-cell, table-caption, flex, inline-flex
+
+- 块级元素具有overflow ，且值不是 visible
+
+BFC用处：
+
+1. 清除浮动
+2. 布局：自适应两栏布局
+3. 防止垂直margin合并
+
+### 圣杯布局和双飞翼布局
+都是要表示将中间的内容自适应定位。
+
+### 深入了解CSS3新特性
+
+新的选择器
+
+```css
+:first-child
+:nth-last-child
+:only-child
+:enabled
+:not(s)
+```
+
+```css
+@font-face
+word-wrap
+text-overflow:clip|ellipsis
+text-decoration:
+```
+
+渐变效果gradient
+
+```css
+background-image:-webkit-gradient(linear,0% 0%,100% 0%,from(#2A8BBE),to(#FE280E));
+```
+
+阴影和反射
+
+```css
+test-shadow:5px 2px 6px rgba
+-webkit-box-reflect: below 10px 
+-webkit-gradient(linear, left top, left bottom, from(transparent), 
+     to(rgba(255, 255, 255, 0.51))); 
+```
+
+flex
+
+动画：CSS3 的 Transitions, Transforms 和 Animation
+
+transition：
+
+```css
+.transStart { 
+   background-color: white; 
+   -webkit-transition: background-color 0.3s linear; 
+   -moz-transition: background-color 0.3s linear; 
+   -o-transition: background-color 0.3s linear; 
+   transition: background-color 0.3s linear; 
+} 
+```
+
+Transform
+
+
+
+

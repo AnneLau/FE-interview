@@ -16,6 +16,11 @@
 - typeof可以识别：boolean undefined string symbol object number function 
 - BUSSNOF
 
+
+### $NAN
+如果其中一个值是NaN,或者两个值都是NaN，则它们不相等。NaN和其他任何值都是不相等的，包括它本身。通过x !== x来判断x是否为NaN，只有在x为NaN的时候，这个表达式的值才为true。
+
+
 ### 变量提升
 
 var和function都会被提升
