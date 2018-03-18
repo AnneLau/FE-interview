@@ -93,3 +93,15 @@ UDP支持的应用协议：NFS(网络文件系统)、SNMP(简单网络管理系�
 
 [简书HTTP1.0、HTTP1.1和HTTP2.0的区别](https://www.jianshu.com/p/be29d679cbff)
 
+### 拥塞控制和流量控制
+
+[TCP/IP详解--拥塞控制 & 慢启动 快恢复 拥塞避免](http://blog.csdn.net/kinger0/article/details/48206999)
+
+2. 几种拥塞控制方法
+
+    慢开始( slow-start )、拥塞避免( congestion avoidance )、快重传( fast retransmit )和快恢复( fast recovery )。
+
+2.1 慢开始和拥塞避免
+
+    发送方维持一个拥塞窗口 cwnd ( congestion window )的状态变量。拥塞窗口的大小取决于网络的拥塞程度，并且动态地在变化。发送方让自己的发送窗口等于拥塞。
+
