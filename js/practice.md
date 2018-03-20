@@ -38,6 +38,9 @@ var john = {
 each(john,log);
 ```
 
+### for in 和for of的区别
+
+
 
 
 
