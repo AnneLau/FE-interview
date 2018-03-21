@@ -384,7 +384,20 @@
             
         </li>
     
-        <li class="chapter " data-level="1.7.4" data-path="../http/tcpip.html">
+        <li class="chapter " data-level="1.7.4" data-path="../http/cookie.html">
+            
+                <a href="../http/cookie.html">
+            
+                    
+                    http-cookie
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7.5" data-path="../http/tcpip.html">
             
                 <a href="../http/tcpip.html">
             
@@ -673,6 +686,49 @@
 </code></pre>
 symbol&#x8BBE;&#x8BA1;&#x7684;&#x521D;&#x8877;&#x662F;&#x4E3A;&#x4E86;&#x907F;&#x514D;&#x51B2;&#x7A81;</li>
 </ul>
+<h3 id="fetch&#x548C;ajax&#x7684;&#x533A;&#x522B;"><a name="fetch&#x548C;ajax&#x7684;&#x533A;&#x522B;" class="anchor-navigation-ex-anchor" href="#fetch&#x548C;ajax&#x7684;&#x533A;&#x522B;"><i class="fa fa-link" aria-hidden="true"></i></a>fetch&#x548C;ajax&#x7684;&#x533A;&#x522B;</h3>
+<p><a href="https://github.com/camsong/blog/issues/2" target="_blank">fetch</a>
+fetch
+window&#x7684;&#x4E00;&#x4E2A;&#x65B9;&#x6CD5; &#x4E3B;&#x8981;&#x7279;&#x70B9;&#x662F;
+1&#x3001;&#x7B2C;&#x4E00;&#x4E2A;&#x53C2;&#x6570;&#x662F;URL
+2&#x3001;&#x7B2C;&#x4E8C;&#x4E2A;&#x53C2;&#x6570;&#x53EF;&#x9009;&#x53C2;&#x6570; &#x53EF;&#x4EE5;&#x63A7;&#x5236;&#x4E0D;&#x540C;&#x7684;init&#x5BF9;&#x8C61;
+3&#x3001;&#x4F7F;&#x7528;&#x4E86;js &#x4E2D;&#x7684;promise&#x5BF9;&#x8C61;</p>
+<pre><code class="lang-js">fetch(url).then(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">response</span>) </span>{
+    <span class="hljs-keyword">return</span> response.json()   <span class="hljs-comment">//&#x6267;&#x884C;&#x6210;&#x529F;&#x7B2C;&#x4E00;&#x6B65;</span>
+}).then(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">returnedValue</span>) </span>{
+    <span class="hljs-comment">//&#x6267;&#x884C;&#x6210;&#x529F;&#x7684;&#x7B2C;&#x4E8C;&#x6B65;</span>
+}).catch(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">err</span>) </span>{
+    <span class="hljs-comment">//&#x4E2D;&#x9014;&#x7684;&#x4EFB;&#x4F55;&#x5730;&#x65B9;&#x51FA;&#x9519;  &#x90FD;&#x4F1A;&#x5728;&#x8FD9;&#x91CC;&#x88AB;&#x6355;&#x83B7;&#x5230;</span>
+})
+</code></pre>
+<p>&#x6CE8;&#x610F;&#xFF1A;
+fetch &#x7684;&#x7B2C;&#x4E8C;&#x53C2;&#x6570;&#x4E2D;
+1&#x3001;&#x9ED8;&#x8BA4;&#x7684;&#x8BF7;&#x6C42;&#x4E3A;get&#x8BF7;&#x6C42; &#x53EF;&#x4EE5;&#x4F7F;&#x7528;method:post &#x6765;&#x8FDB;&#x884C;&#x914D;&#x7F6E; 
+2&#x3001;&#x7B2C;&#x4E00;&#x6B65;&#x4E2D;&#x7684; response&#x6709;&#x8BB8;&#x591A;&#x65B9;&#x6CD5; json() text() formData()
+3&#x3001;Fetch&#x8DE8;&#x57DF;&#x7684;&#x65F6;&#x5019;&#x9ED8;&#x8BA4;&#x4E0D;&#x4F1A;&#x5E26;cookie &#x9700;&#x8981;&#x624B;&#x52A8;&#x7684;&#x6307;&#x5B9A; credentials:&apos;include&apos;</p>
+<p>&#x4F7F;&#x7528;fetch&#x4E4B;&#x540E;&#x5F97;&#x5230;&#x7684;&#x662F;&#x4E00;&#x4E2A;promise&#x5BF9;&#x8C61; &#x5728;&#x8FD9;&#x4E2A;promise&#x5BF9;&#x8C61;&#x91CC;&#x8FB9;&#x518D;&#x5B9A;&#x4E49;&#x6267;&#x884C;&#x6210;&#x529F;&#x7684;&#x65F6;&#x5019;&#x662F;&#x4EC0;&#x4E48;&#x3002;&#x4E0B;&#x9762;&#x662F;&#x6B63;&#x786E;&#x7684;fetch&#x7684;&#x4F7F;&#x7528;&#x65B9;&#x6CD5;</p>
+<pre><code class="lang-js"> <span class="hljs-keyword">var</span> promise=fetch(<span class="hljs-string">&apos;http://localhost:3000/news&apos;</span>, {
+        method: <span class="hljs-string">&apos;get&apos;</span>
+    }).then(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">response</span>) </span>{
+             <span class="hljs-keyword">return</span>  response.json()
+    }).catch(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">err</span>) </span>{
+        <span class="hljs-comment">// Error :(</span>
+    });
+    promise.then(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">data</span>) </span>{
+          <span class="hljs-built_in">console</span>.log(data)
+    }).catch(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">error</span>) </span>{
+        <span class="hljs-built_in">console</span>.log(error)
+    })
+</code></pre>
+<p>fetch&#x548C;ajax &#x7684;&#x4E3B;&#x8981;&#x533A;&#x522B;
+1&#x3001;fetch()&#x8FD4;&#x56DE;&#x7684;promise&#x5C06;&#x4E0D;&#x4F1A;&#x62D2;&#x7EDD;http&#x7684;&#x9519;&#x8BEF;&#x72B6;&#x6001;&#xFF0C;&#x5373;&#x4F7F;&#x54CD;&#x5E94;&#x662F;&#x4E00;&#x4E2A;HTTP 404&#x6216;&#x8005;500 
+2&#x3001;&#x5728;&#x9ED8;&#x8BA4;&#x60C5;&#x51B5;&#x4E0B; fetch&#x4E0D;&#x4F1A;&#x63A5;&#x53D7;&#x6216;&#x8005;&#x53D1;&#x9001;cookies</p>
+<p>&#x4F7F;&#x7528;fetch&#x5F00;&#x53D1;&#x9879;&#x76EE;&#x7684;&#x65F6;&#x5019;&#x7684;&#x95EE;&#x9898;
+1&#x3001;&#x6240;&#x6709;&#x7684;IE&#x6D4F;&#x89C8;&#x5668;&#x90FD;&#x4E0D;&#x4F1A;&#x652F;&#x6301; fetch()&#x65B9;&#x6CD5;
+2&#x3001;&#x670D;&#x52A1;&#x5668;&#x7AEF;&#x8FD4;&#x56DE; &#x72B6;&#x6001;&#x7801; 400 500&#x7684;&#x65F6;&#x5019; &#x4E0D;&#x4F1A;reject</p>
+<p>Fetch &#x8BF7;&#x6C42;&#x9ED8;&#x8BA4;&#x662F;&#x4E0D;&#x5E26; cookie &#x7684;&#xFF0C;&#x9700;&#x8981;&#x8BBE;&#x7F6E; fetch(url, {credentials: &apos;include&apos;})
+&#x670D;&#x52A1;&#x5668;&#x8FD4;&#x56DE; 400&#xFF0C;500 &#x9519;&#x8BEF;&#x7801;&#x65F6;&#x5E76;&#x4E0D;&#x4F1A; reject&#xFF0C;&#x53EA;&#x6709;&#x7F51;&#x7EDC;&#x9519;&#x8BEF;&#x8FD9;&#x4E9B;&#x5BFC;&#x81F4;&#x8BF7;&#x6C42;&#x4E0D;&#x80FD;&#x5B8C;&#x6210;&#x65F6;&#xFF0C;fetch &#x624D;&#x4F1A;&#x88AB; reject&#x3002;
+&#x7ADF;&#x7136;&#x6CA1;&#x6709;&#x63D0;&#x5230; IE&#xFF0C;&#x8FD9;&#x5B9E;&#x5728;&#x592A;&#x4E0D;&#x79D1;&#x5B66;&#x4E86;&#xFF0C;&#x73B0;&#x5728;&#x6765;&#x8BE6;&#x7EC6;&#x8BF4;&#x4E0B; IE</p>
 
                                 
                                 </section>
@@ -716,7 +772,7 @@ symbol&#x8BBE;&#x8BA1;&#x7684;&#x521D;&#x8877;&#x662F;&#x4E3A;&#x4E86;&#x907F;&#
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"ES6相关问题","level":"1.3.3","depth":2,"next":{"title":"模块化","level":"1.3.4","depth":2,"path":"js/module.md","ref":"js/module.md","articles":[]},"previous":{"title":"JS&DOM问题","level":"1.3.2","depth":2,"path":"js/dom.md","ref":"js/dom.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["anchor-navigation-ex"],"pluginsConfig":{"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"mode":"float","multipleH1":true,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showLevel":true},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"js/es6.md","mtime":"2018-03-17T08:15:23.945Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-03-20T01:04:29.846Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"ES6相关问题","level":"1.3.3","depth":2,"next":{"title":"模块化","level":"1.3.4","depth":2,"path":"js/module.md","ref":"js/module.md","articles":[]},"previous":{"title":"JS&DOM问题","level":"1.3.2","depth":2,"path":"js/dom.md","ref":"js/dom.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["anchor-navigation-ex"],"pluginsConfig":{"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"mode":"float","multipleH1":true,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showLevel":true},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"js/es6.md","mtime":"2018-03-20T14:08:39.290Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2018-03-21T10:34:48.380Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

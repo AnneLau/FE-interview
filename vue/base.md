@@ -411,6 +411,7 @@ state内部是如何实现支持模块配置和模块嵌套的？
 React 和 Vue 有许多相似之处，它们都有：
 
 - 使用 Virtual DOM
+- 数据驱动
 - 提供了响应式 (Reactive) 和组件化 (Composable) 的视图组件。
 - 将注意力集中保持在核心库，而将其他功能如路由和全局状态管理交给相关的库。
 
@@ -503,4 +504,44 @@ render matched component
 - 响应式数据机制
 - Vue 渲染机制
 - 地址变更监听
+
+### 为什么vue要有computed，它是怎么实现的？
+
+- 这里不使用 computed 属性，而是在 methods 中定义一个相同的函数。对于最终结果，这两种方式确实恰好相同。然而，细微的差异之处在于，computed 属性会基于它所依赖的数据进行缓存。每个 computed 属性，只有在它所依赖的数据发生变化时，才会重新取值(re-evaluate)。这就意味着，只要 message 没有发生变化，多次访问 computed 属性 reversedMessage，将会立刻返回之前计算过的结果，而不必每次都重新执行函数。
+
+- 简单来说，computed会直接缓存，除非它依赖的值发生了变化。
+为什么我们需要将依赖数据缓存起来？假设一种场景，我们有一个高性能开销(expensive)的 computed 属性 A，在 computed 属性的 getter 函数内部，需要遍历循环一个巨大数组，并进行大量计算。然后还有其他 computed 属性直接或间接依赖于 A。如果没有缓存，我们将不可避免地多次执行 A 的 getter 函数，这远多余实际需要执行的次数！然而在某些场景下，你可能不希望有缓存，请使用 method 方法替代。
+
+- 如果使用watch，则每次变化都会重新计算
+
+- 语义化，代码更加清晰。
+
+#### computed 属性和 watch 属性
+Vue 其实还提供了一种更加通用的方式，来观察和响应 Vue 实例上的数据变化：watch 属性。watch 属性是很吸引人的使用方式，然而，当你有一些数据需要随着另外一些数据变化时，过度滥用 watch 属性会造成一些问题 - 尤其是那些具有 AngularJS 开发背景的开发人员。因此，更推荐的方式是，使用 computed 属性，而不是命令式(imperative)的 watch 回调函数。思考下面这个示例：
+
+
+fullname 需要watch first和last
+但是只需要 computed一次
+
+#### 底层实现原理
+
+在watcher存在的情况下，首先判断watcher.dirty属性，这个属性主要是用于判断这个computed属性是否需要重新求值，因为在上一轮的依赖收集的过程当中，观察者已经将这个watcher添加到依赖数组当中了，如果观察者发生了变化，就会dep.notify()，通知所有的watcher，而对于computed的watcher接收到变化的请求后，会将watcher.dirty = true即表明观察者发生了变化，当再次调用computed属性的getter函数的时候便会重新计算，否则还是使用之前缓存的值。
+
+### vue的directive有什么用，为什么需要它，react需要吗？
+
+自定义vue指令：
+
+```
+// 注册一个名为 `v-focus` 的全局自定义指令
+Vue.directive('focus', {
+  // 当绑定的元素插入到 DOM 时调用此函数……
+  inserted: function (el) {
+    // 元素调用 focus 获取焦点
+    el.focus()
+  }
+})
+```
+
+### react需要directive属性吗
+
 

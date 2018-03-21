@@ -172,6 +172,7 @@ new new Foo().getName();// === new ((new Foo()).getName)()
 typeof的结果只有BUSSNOF七种
 
 
+### requestAnimationFrame
 
 ### addEventListener的第三个参数
 

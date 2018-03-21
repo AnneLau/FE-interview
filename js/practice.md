@@ -42,5 +42,7 @@ each(john,log);
 
 
 
+### 有关for循环血的教训~~~
+在for循环中。如果使用了arr.length,永远都不要在for循环中使用pop，push这种东西！！！！！
 
 
